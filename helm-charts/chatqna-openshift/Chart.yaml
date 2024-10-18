@@ -1,0 +1,50 @@
+# Copyright (C) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: v2
+name: chatqna
+description: The Helm chart to deploy ChatQnA
+type: application
+dependencies:
+# #  - name: tgi
+# #    version: 1.0.0
+# #    alias: tgi-guardrails
+# #    repository: "file://../common/tgi"
+# #    condition: guardrails-usvc.enabled
+# #  - name: guardrails-usvc
+# #    version: 1.0.0
+# #    repository: "file://../common/guardrails-usvc"
+# #    condition: guardrails-usvc.enabled
+  - name: tgi
+    version: 1.0.0
+    repository: "file://tgi"
+  - name: llm-uservice
+    version: 1.0.0
+    repository: "file://llm-uservice"
+  - name: tei
+    version: 1.0.0
+    repository: "file://tei"
+  - name: embedding-usvc
+    version: 1.0.0
+    repository: "file://embedding-usvc"
+  - name: teirerank
+    version: 1.0.0
+    repository: "file://teirerank"
+  - name: reranking-usvc
+    version: 1.0.0
+    repository: "file://reranking-usvc"
+  - name: redis-vector-db
+    version: 1.0.0
+    repository: "file://redis-vector-db"
+  - name: retriever-usvc
+    version: 1.0.0
+    repository: "file://retriever-usvc"
+  - name: data-prep
+    version: 1.0.0
+    repository: "file://data-prep"
+  - name: ui
+    alias: chatqna-ui
+    version: 1.0.0
+    repository: "file://ui"
+version: 1.0.0
+appVersion: "v1.0"

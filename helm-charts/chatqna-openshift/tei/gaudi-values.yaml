@@ -1,0 +1,19 @@
+# Copyright (C) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+# Default values for tei.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+accelDevice: "gaudi"
+
+image:
+  repository: ghcr.io/huggingface/tei-gaudi
+  tag: synapse_1.16
+
+securityContext:
+  readOnlyRootFilesystem: false
+
+resources:
+  limits:
+    habana.ai/gaudi: 1

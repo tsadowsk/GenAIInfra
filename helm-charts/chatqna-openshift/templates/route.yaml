@@ -1,0 +1,39 @@
+# Copyright (C) 2024 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    {{- include "chatqna.labels" . | nindent 4 }}
+    app: {{ include "chatqna.fullname" . }}
+  name: {{ include "chatqna.fullname" . }}
+spec:
+  port:
+    targetPort: chatqna
+  to:
+    kind: Service
+    name: chatqna
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    {{- include "chatqna.labels" . | nindent 4 }}
+    app: {{ include "chatqna.fullname" . }}
+  name: {{ .Release.Name }}-tls
+spec:
+  host: chatqna-react-ui-{{ .Release.Namespace }}.apps.{{ .Values.global.clusterDomain }}
+  path: /v1/chatqna
+  port:
+    targetPort: chatqna
+  tls:
+    termination: edge
+  to:
+    kind: Service
+    name: chatqna
+    weight: 100
+  wildcardPolicy: None
+
